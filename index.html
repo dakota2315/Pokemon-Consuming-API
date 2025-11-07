@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pokemon Search</title>
+    <link rel="stylesheet" href="estilos.css">
+</head>
+<body background='pokemon.jpg'>
+    <h1 class="title"><center><i>*** Looking for a Pokemon ***</i></center></h1>
+    <hr>
+	
+	<div class="pokemon-list" id="ListaPokemon">
+		<div class="pokemon" id="pokemon-1">
+			<img src="" alt=""> 
+			<p>ID: </p>
+			<p>Name: </p>
+			<p>Type(s): </p>
+			<p>Weight: </p>
+			<p>Height: </p>
+			<br><br>
+			<p><font color = "red"><i>...<br>Press the button on the right to do your search<br>from the 807 available pokemon<br>...</i></font color></p>
+	</div>
+	<br>
+    <button class="button" onclick="ask()">New Search</button>
+	
+	<script>
+		
+		//make the reference to the master container
+		let lista = document.getElementById("ListaPokemon")
+        
+        function searchPokemon(i, num){
+            fetch(`https://pokeapi.co/api/v2/pokemon/${i}`)
+            .then(function(response){
+                response.json()
+                .then(function(pokemon) {
+                    console.log(pokemon)
+					crearPokemon(pokemon, num)
+                })
+            })
+        }
+
+        function searchPokemones(){
+			let primerId = Math.round(Math.random()*150)
+			let segundoId = Math.round(Math.random()*150)
+			searchPokemon(primerId, 1)
+			searchPokemon(segundoId, 2)
+		}
+		
+		function crearPokemon(pokemon, num){ //convert JS data to HTML data
+			let item = lista.querySelector(`#pokemon-${num}`)
+			let image = item.getElementsByTagName("img")[0]
+			image.setAttribute("src", pokemon.sprites.front_default)
+			let name = item.getElementsByTagName("p")[1]
+			name.textContent = "NAME ... "
+			name.textContent += pokemon.name
+			let id = item.getElementsByTagName("p")[0]
+			id.textContent = "ID ... "
+			id.textContent += pokemon.id
+			let type = item.getElementsByTagName("p")[2]
+			type.textContent = "TYPE(S) ... "
+			type.textContent += pokemon.types.map((type) => type.type.name).join(', ')
+			let weight = item.getElementsByTagName("p")[3]
+			weight.textContent = "WEIGHT ... "
+			weight.textContent += pokemon.weight
+			let height = item.getElementsByTagName("p")[4]
+			height.textContent = "HEIGHT ... "
+			height.textContent += pokemon.height
+		}
+		
+		function ask (){
+			var buscar = window.prompt("Enter the name of the Pokemon to look for: ");
+			searchPokemon(buscar, 1);
+		}
+			
+		
+		//searchPokemones();
+		
+		//var buscar = "bulbasaur"
+        //searchPokemon(buscar);
+		//var buscar = window.prompt("Enter the name of the Pokemon to look for: ");
+        //searchPokemon(buscar);
+
+
+    </script>
+</body>
+</html>
