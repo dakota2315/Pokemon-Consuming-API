@@ -12,17 +12,18 @@
 	
 	<div class="pokemon-list" id="ListaPokemon">
 		<div class="pokemon" id="pokemon-1">
-			<img src="" alt=""> 
+			<img src="../images/eyes-02.png" alt="" width="120px" height="120px"> 
 			<p>ID: </p>
 			<p>Name: </p>
 			<p>Type(s): </p>
 			<p>Weight: </p>
 			<p>Height: </p>
 			<br><br>
-			<p><font color = "red"><i>...<br>Press the button on the right to do your search<br>from the 807 available pokemon<br>...</i></font color></p>
+			<p><font color = "red"><i>...<br>Press the 'New Search' button to do your inquire<br>from the list of 1025 available pokemon<br/>as March 2024<br>...</i></font color></p>
+			<button class="button" onclick="ask()">New Search</button>
 	</div>
 	<br>
-    <button class="button" onclick="ask()">New Search</button>
+    
 	
 	<script>
 		
@@ -69,7 +70,7 @@
 		}
 		
 		function ask (){
-			var buscar = window.prompt("Enter the name of the Pokemon to look for: ");
+			var buscar = window.prompt("Enter the name of the Pokemon to look for (lower case) or just search by number: ");
 			searchPokemon(buscar, 1);
 		}
 			
