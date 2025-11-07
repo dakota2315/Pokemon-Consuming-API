@@ -5,3 +5,5 @@ This project contains the code using HTML, Javascript, JSON and CSS to use the A
 If the pokemon is found, then it will display the pokemon picture and relevant data (name, id, type(s), height and weight) on the Internet browser window.
 
 NOTE: it works only on more updated browsers as just recent browser can use JSON
+
+Check the site at https://dakota2315.github.io/Pokemon-Consuming-API/
